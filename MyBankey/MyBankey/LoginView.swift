@@ -71,7 +71,7 @@ extension LoginView {
     
     private func layout() {
         
-        //add elements to the stackview, the order matters
+        //add elements to the stackview, the order of appereance matters
         stackView.addArrangedSubview(usernameTextField)
         stackView.addArrangedSubview(dividerView)
         stackView.addArrangedSubview(passwordTextField)

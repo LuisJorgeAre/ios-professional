@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F30CFAC227F8C96300187669 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CFAC127F8C96300187669 /* LoginView.swift */; };
+		F3789EEE280213B700F48007 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3789EED280213B700F48007 /* OnboardingContainerViewController.swift */; };
 		F3C9774727F7D7D200AB8516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9774627F7D7D200AB8516 /* AppDelegate.swift */; };
 		F3C9774B27F7D7D200AB8516 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9774A27F7D7D200AB8516 /* LoginViewController.swift */; };
 		F3C9775027F7D7D700AB8516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C9774F27F7D7D700AB8516 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		F30CFAC127F8C96300187669 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F3789EED280213B700F48007 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		F3C9774327F7D7D200AB8516 /* MyBankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C9774627F7D7D200AB8516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3C9774A27F7D7D200AB8516 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		F3789EEC2802137B00F48007 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F3789EED280213B700F48007 /* OnboardingContainerViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		F3C9773A27F7D7D200AB8516 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		F3C9774527F7D7D200AB8516 /* MyBankey */ = {
 			isa = PBXGroup;
 			children = (
+				F3789EEC2802137B00F48007 /* Onboarding */,
 				F30CFABF27F8C1A900187669 /* Files */,
 				F30CFAC027F8C91C00187669 /* Login */,
 				F3C9774627F7D7D200AB8516 /* AppDelegate.swift */,
@@ -153,6 +164,7 @@
 				F30CFAC227F8C96300187669 /* LoginView.swift in Sources */,
 				F3C9774B27F7D7D200AB8516 /* LoginViewController.swift in Sources */,
 				F3C9774727F7D7D200AB8516 /* AppDelegate.swift in Sources */,
+				F3789EEE280213B700F48007 /* OnboardingContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
