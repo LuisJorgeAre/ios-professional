@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-//        window?.rootViewController = LoginViewController()   // the VC to start with
-        window?.rootViewController = OnboardingContainerViewController()
+        window?.rootViewController = OnboardingViewController()   // the VC to start with
+        //window?.rootViewController = OnboardingContainerViewController()
 
         
         return true
