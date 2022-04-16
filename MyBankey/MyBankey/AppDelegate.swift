@@ -20,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        window?.rootViewController = OnboardingViewController()   // the VC to start with
-        //window?.rootViewController = OnboardingContainerViewController()
+//        window?.rootViewController = OnboardingViewController(heroImageName: "delorean",
+//                                                              titleText: "Bankey is faster, page 1")
+        
+        window?.rootViewController = OnboardingContainerViewController()
 
         
         return true

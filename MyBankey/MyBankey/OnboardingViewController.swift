@@ -16,6 +16,13 @@ class OnboardingViewController: UIViewController {
     let imageView = UIImageView()
     let label = UILabel()
     
+    // CREATING INITIALIZERS ON VCs
+    // always initialize variables before use them in the init method
+    let heroImageName: String
+    let titleText: String
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,13 +30,32 @@ class OnboardingViewController: UIViewController {
         layout()
         
     } // viewDidLoad
+    
+    
+    // constructor - initializer
+    
+    init(heroImageName: String, titleText: String){
         
+        self.heroImageName = heroImageName
+        self.titleText = titleText
+        
+        super.init(nibName: nil, bundle: nil)
+        
+    } // init
+    
+    // required by VC created programatically
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 } // class OnboardingViewController
 
 
 extension OnboardingViewController {
     
     private func style() {  // the way the controls look like, e.g., color, size, etc.
+        
+        view.backgroundColor = .systemBackground
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -38,7 +64,7 @@ extension OnboardingViewController {
         // image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "delorean")
+        imageView.image = UIImage(named: heroImageName)
         
         // label
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +72,7 @@ extension OnboardingViewController {
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true          // adjust the font dinamically
         label.numberOfLines = 0                         // make it multiline
-        label.text = "Bankey is faster, easier to use and has a brand new look and feel that will make you feel like you are back in 1989"
+        label.text = titleText
         
         
     }
