@@ -81,7 +81,6 @@ extension LoginView {
         
         NSLayoutConstraint.activate([
           
-            // topAnchor, leadingAnchor, trailinganchor = view
             stackView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),

@@ -7,6 +7,28 @@
 
 import UIKit
 
+//MARK: - Protocols
+
+// 1
+protocol LogoutDelegate: AnyObject {
+    
+    func didLogout()
+    
+} // protocol LogoutDelegate
+
+
+// 1 - Protocol-Delegate - signal when someone finishes the login process
+// this is a protocol, not a delegate, do not get confused
+// the postfix ...Delegate is just the namingConvention
+protocol LoginViewControllerDelegate: AnyObject {
+    
+    // message to send to whoever register themselves to us
+    func didLogin()     // functions defined in protocols don't have a body
+    
+    
+} // protocol LoginViewControllerDelegate
+
+
 class LoginViewController: UIViewController {
 
 //MARK: UI variables
@@ -19,6 +41,12 @@ class LoginViewController: UIViewController {
     
     let signInButton = UIButton(type: .system)      // new kind of Button of iOS 15
     let errorMessageLabel = UILabel()
+
+    // 2 - Protocol-Delegate - signal when someone finishes the login process
+    // define the delegate in the class for people to register
+    // "weak var" to avoid retain cycle (2 strong vars)
+    weak var delegate: LoginViewControllerDelegate?
+
     
     // get TextFields data, computed properties to return those values
     var username: String? {
@@ -37,6 +65,12 @@ class LoginViewController: UIViewController {
         style()
         layout()
 
+    } //viewDidLoad
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signInButton.configuration?.showsActivityIndicator = false 
     }
 
 
@@ -71,8 +105,10 @@ extension LoginViewController {
     
         // Button
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.configuration = .filled()          // iOS 15 Button configuration style (there are others, too)
-        signInButton.configuration?.imagePadding = 8 // for the spinning indicator spacing
+        // iOS 15 Button configuration style (there are others, too)
+        signInButton.configuration = .filled()
+        // for the spinning indicator spacing
+        signInButton.configuration?.imagePadding = 8
         signInButton.setTitle("Sign In", for: [])
         signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
         
@@ -173,9 +209,16 @@ extension LoginViewController {
         }
         
         // check username and password
-        if username == "Kevin" && password == "Welcome" {
+        if username == "Luis" && password == "Luis" {
             // successful log in
-            signInButton.configuration?.showsActivityIndicator = true   // Spinning indicator in the button
+            // Spinning indicator in the button
+            signInButton.configuration?.showsActivityIndicator = true
+            
+            // 3 - Protocol-Delegate - signal when someone finishes the login process
+            // send the signal to everyone to indicate that we finished login, we're done here.
+            // we say that they are free to do what ever is next
+            delegate?.didLogin()
+            
         } else {
             configureView(withMessage: "Incorrect username / password")
         }

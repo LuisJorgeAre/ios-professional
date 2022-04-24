@@ -8,14 +8,31 @@
 
 import UIKit
 
+// 1 - Protocol-Delegate
+protocol OnboardingContainerViewControllerDelegate: AnyObject{
+    
+    func didFinishOnboarding()
+    
+} // protocol OnboardingContainerViewControllerDelegate
+
+
+
 class OnboardingContainerViewController: UIViewController {
 
-    let pageViewController: UIPageViewController    // create an object to instantiate UIPageViewController
+    // create an object to instantiate UIPageViewController
+    let pageViewController: UIPageViewController
     var pages = [UIViewController]()                // the array of pages
-    var currentVC: UIViewController {
-        didSet {
-        }
-    }
+
+    // 2 - Protocol-Delegate
+    weak var delegate: OnboardingContainerViewControllerDelegate?
+
+    var currentVC: UIViewController
+    
+    // this button will appear in all the onboarding sreens,
+    // at tge top left corner
+    let closeButton = UIButton(type: .system)
+    
+    
     
     // initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -25,11 +42,11 @@ class OnboardingContainerViewController: UIViewController {
                                                        navigationOrientation: .horizontal,
                                                        options: nil)
         
-        // create the pages
+        // create the pages with initializers/constructors
         let page1 = OnboardingViewController(heroImageName: "delorean",
                                              titleText: "Bankey is faster, pg1")
         let page2 = OnboardingViewController(heroImageName: "world",
-                                             titleText: "Move your moner, pg2")
+                                             titleText: "Move your money, pg2")
         let page3 = OnboardingViewController(heroImageName: "thumbs",
                                              titleText: "Learn more, pg3")
         
@@ -40,7 +57,9 @@ class OnboardingContainerViewController: UIViewController {
         currentVC = pages.first!
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
+    
+    } // overrride init
+    
     
     
     required init?(coder: NSCoder) {
@@ -51,6 +70,14 @@ class OnboardingContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setup()
+        style()
+        layout()
+        
+    } // viewDidLoad
+    
+    private func setup(){
         
         view.backgroundColor = .systemPurple
         
@@ -77,8 +104,33 @@ class OnboardingContainerViewController: UIViewController {
                                               animated: false, completion: nil)
         // store the page in currentVC
         currentVC = pages.first!
-    }
-}
+
+        
+    } // setup
+    
+    
+    private func style() {
+        
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setTitle("Close", for: [])
+        closeButton.addTarget(self, action: #selector(closeTapped),
+                              for: .primaryActionTriggered)
+        view.addSubview(closeButton)
+        
+    } // style
+    
+    private func layout(){
+        
+        NSLayoutConstraint.activate([
+            
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
+        ])
+
+        
+    } // layout
+    
+} // class OnboardingContainerViewController
 
 
 
@@ -121,5 +173,22 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
         return pages.firstIndex(of: self.currentVC) ?? 0
     }
 }
+
+
+
+//MARK: - Actions
+
+extension OnboardingContainerViewController {
+
+    @objc func closeTapped(_ sender: UIButton) {
+        
+        // 3 - Protocol-Delegate
+        // fire the delegate
+        delegate?.didFinishOnboarding()
+        
+    } // closeTapped
+
+    
+} // extension OnboardingContainerViewController
 
 
